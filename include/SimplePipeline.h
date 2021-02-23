@@ -137,7 +137,7 @@ public:
                 const int label_idx = static_cast<int>(d[1]);
                 if(desiredDetect)
                 {
-                    if (!(std::find(desiredObjects.begin(), desiredObjects.end(), fLabel) != desiredObjects.end()))
+                    if (!(std::find(desiredObjects.begin(), desiredObjects.end(), label_idx) != desiredObjects.end()))
                     {
                         continue;
                     }
@@ -310,7 +310,7 @@ private:
 
 };
 
-class YoloExample : public Pipeline{
+class YoloExample : public SimplePipeline{
 public:
     explicit YoloExample(const cv::CommandLineParser &parser) : Pipeline(parser){
         modelFile = parser.get<std::string>("model");
