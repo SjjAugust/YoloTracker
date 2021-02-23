@@ -1,7 +1,7 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/core/ocl.hpp>
 #include <caffe/caffe.hpp>
-#include "Pipeline.h"
+#include "SimplePipeline.h"
 // ----------------------------------------------------------------------
 
 const char* keys =
