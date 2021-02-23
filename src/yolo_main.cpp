@@ -49,8 +49,8 @@ int main(int argc, char** argv)
     LOG(INFO) << (cv::ocl::useOpenCL() ? "OpenCL is enabled" : "OpenCL not used") << std::endl;
 
 
-    SSDExample ssdExample(parser);
-    ssdExample.Process();
+    YoloExample yolo_example(parser);
+    yolo_example.Process();
 
     cv::destroyAllWindows();
     return 0;

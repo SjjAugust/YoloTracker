@@ -256,6 +256,7 @@ protected:
     std::unique_ptr<CTracker> m_tracker;
     float m_fps;
     int direction;
+    float detectThreshold;
 
     virtual std::vector<vector<float> > detectframe(cv::Mat frame)= 0;
     virtual void DrawData(cv::Mat frame, double fontScale) = 0;
@@ -303,7 +304,7 @@ private:
     bool desiredDetect;
     std::string inFile;
     std::string outFile;
-    float detectThreshold;
+    
     std::vector<cv::Scalar> m_colors;
     std::string desiredObjectsString;
 
@@ -312,7 +313,7 @@ private:
 
 class YoloExample : public SimplePipeline{
 public:
-    explicit YoloExample(const cv::CommandLineParser &parser) : Pipeline(parser){
+    explicit YoloExample(const cv::CommandLineParser &parser) : SimplePipeline(parser){
         modelFile = parser.get<std::string>("model");
         weightsFile = parser.get<std::string>("weight");
 
@@ -353,7 +354,7 @@ protected:
             float ymin = static_cast<float>(bbox.y);
             float xmax = static_cast<float>(bbox.w) + xmin;
             float ymax = static_cast<float>(bbox.h) + ymin;
-            ret.emplace_back({frame_count_, static_cast<float>(bbox.obj_id+1), bbox.prob, xmin, ymin, xmax, ymax});
+            ret.emplace_back(std::vector<float>{frame_count_, static_cast<float>(bbox.obj_id+1), bbox.prob, xmin, ymin, xmax, ymax});
         }
         ++frame_count_;
         return ret;
