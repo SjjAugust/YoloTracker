@@ -29,7 +29,7 @@ endif()
 # ----------------------------------------------------------------------------
 # Find Libraries
 # ----------------------------------------------------------------------------
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "/data/work/SSD_Tracker/cmake/")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "/data/work/YoloTracker/cmake/")
 FIND_PACKAGE(Caffe REQUIRED)
 FIND_PACKAGE(OpenCV 3.3.1 REQUIRED)
 # ----------------------------------------------------------------------------
