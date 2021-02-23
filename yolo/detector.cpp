@@ -47,7 +47,9 @@ int max_index(float *a, int n)
 
     
 
- }
+}
+
+Detector::Detector(){}
 
 Detector::~Detector(){
 

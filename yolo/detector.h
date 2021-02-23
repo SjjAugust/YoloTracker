@@ -27,6 +27,7 @@ struct bbox_t{
 class Detector{
 public:
     Detector(std::string prototxt,std::string caffemodel,int gpu_id);
+    Detector();
     ~Detector();
 
     std::vector<bbox_t> detect(std::string image_path,float thresh);

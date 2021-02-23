@@ -367,7 +367,7 @@ protected:
                                 cv::Size2f(0.1f, 8.0f))      // Min and max ratio: width / height
                     )
             {
-                DrawTrack(frame, 1, *track);
+                DrawTrack(frame, *track);
                 std::string label = track->m_lastRegion.m_type + ": " + std::to_string((int)(track->m_lastRegion.m_confidence * 100)) + " %";
                 //std::string label = std::to_string(track->m_trace.m_firstPass) + " | " + std::to_string(track->m_trace.m_secondPass);
                 int baseLine = 0;
