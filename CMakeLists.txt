@@ -3,8 +3,29 @@ cmake_minimum_required(VERSION 3.5)
 # ----------------------------------------------------------------------------
 # Set Project Name
 # ----------------------------------------------------------------------------
-set (PROJECT_NAME  SSD)
+set (PROJECT_NAME  YoloTracker)
+# ----------------------------------------------------------------------------
+# Setup CUDA
+# ----------------------------------------------------------------------------
+find_package(CUDA)
+set(
+	CUDA_NVCC_FLAGS
+	${CUDA_NVCC_FLAGS}; 
+    -O3 
+	-gencode arch=compute_53,code=sm_53  #tegra tx1 
+        -gencode arch=compute_61,code=sm_61  #gtx 1060
+	-gencode arch=compute_62,code=sm_62  #tegra tx2
+)
 
+if(CUDA_VERSION_MAJOR GREATER 9)
+	message("-- CUDA ${CUDA_VERSION_MAJOR} detected, enabling SM_72")
+	set (
+		CUDA_NVCC_FLAGS
+		${CUDA_NVCC_FLAGS};
+		-gencode arch=compute_72,code=sm_72 #xavier
+                -gencode arch=compute_75,code=sm_75 #rtx2080 
+	)
+endif()
 # ----------------------------------------------------------------------------
 # Find Libraries
 # ----------------------------------------------------------------------------
@@ -22,6 +43,7 @@ LINK_LIBRARIES(glog gflags boost_filesystem boost_system)
 
 INCLUDE(CheckIncludeFileCXX)
 check_include_file_cxx(opencv2/bgsegm.hpp HAVE_OPENCV_CONTRIB)
+message("-- HAVE_OPENCV_CONTRIB: ${HAVE_OPENCV_CONTRIB}")
 
 INCLUDE_DIRECTORIES(
         ${PROJECT_SOURCE_DIR}/src
@@ -30,6 +52,7 @@ INCLUDE_DIRECTORIES(
         ${PROJECT_SOURCE_DIR}/Tracker/HungarianAlg
         ${PROJECT_SOURCE_DIR}/Tracker/graph
         ${PROJECT_SOURCE_DIR}/Tracker/graph/GTL/include
+        ${PROJECT_SOURCE_DIR}/yolo
 	/usr/local/cuda/include
 )
 
@@ -177,14 +200,40 @@ set(folder_source
         Tracker/LocalTracker.cpp
         Tracker/Kalman.cpp
         )
+set(yolo_source
+        yolo/activation_kernels.cu
+        yolo/blas_kernels.cu
+        yolo/box.cpp
+        yolo/cuda.cpp
+        yolo/detector.cpp
+        yolo/image_opencv.cpp
+        yolo/image.cpp
+        yolo/yolo_layer.cpp
+        )
+set(yolo_headers
+        yolo/activations.h
+        yolo/blas.h
+        yolo/box.h
+        yolo/cuda.h
+        yolo/detector.h
+        yolo/image_opencv.h
+        yolo/image.h
+        yolo/yolo_layer.h
+        )
 
 add_executable(${PROJECT_NAME}
-        src/main.cpp include/Pipeline.h
-        src/ssd_detect.cpp
-        include/ssd_detect.h
+        src/yolo_main.cpp 
+        include/SimplePipeline.h
         include/defines.h
         include/nms.h
-        ${folder_source} ${folder_headers} ${graph_source} ${graph_header} ${gtl_source} ${gtl_header}
+        ${folder_source} 
+        ${folder_headers} 
+        ${graph_source} 
+        ${graph_header} 
+        ${gtl_source} 
+        ${gtl_header}
+        ${yolo_source}
+        ${yolo_headers}
 )
 
 SOURCE_GROUP("Source Files" FILES ${folder_source})
@@ -192,6 +241,7 @@ SOURCE_GROUP("Header Files" FILES ${folder_headers})
 
 SOURCE_GROUP("graph" FILES ${graph_source} ${graph_header})
 SOURCE_GROUP("GTL" FILES ${gtl_source} ${gtl_header})
+SOURCE_GROUP("yolo" FILES ${yolo_source} ${yolo_headers})
 
 # ----------------------------------------------------------------------------
 # Link libraries to project

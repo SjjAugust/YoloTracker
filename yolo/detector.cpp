@@ -4,7 +4,7 @@
  * Date:	2020/04/26	
  */
 
- #include "detector.h"
+#include "detector.h"
 
 int max_index(float *a, int n)
 {
