@@ -147,34 +147,34 @@ public:
                 switch (label_idx)
                 {
                 case 1:
-                    label = "pedestrian"
+                    label = "pedestrian";
                     break;
                 case 2:
-                    label = "people"
+                    label = "people";
                     break;
                 case 3:
-                    label = "bicycle"
+                    label = "bicycle";
                     break;
                 case 4:
-                    label = "car"
+                    label = "car";
                     break;
                 case 5:
-                    label = "van"
+                    label = "van";
                     break;
                 case 6:
-                    label = "truck"
+                    label = "truck";
                     break;
                 case 7:
-                    label = "tricycle"
+                    label = "tricycle";
                     break;
                 case 8:
-                    label = "awing-tricycle"
+                    label = "awing-tricycle";
                     break;
                 case 9:
-                    label = "bus"
+                    label = "bus";
                     break;
                 case 10:
-                    label = "motor"
+                    label = "motor";
                     break;
                 default:
                     label = std::to_string(static_cast<int>(label_idx));
