@@ -221,7 +221,7 @@ set(yolo_headers
         yolo/yolo_layer.h
         )
 
-add_executable(${PROJECT_NAME}
+cuda_add_executable(${PROJECT_NAME}
         src/yolo_main.cpp 
         include/SimplePipeline.h
         include/defines.h
