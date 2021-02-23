@@ -248,3 +248,4 @@ SOURCE_GROUP("yolo" FILES ${yolo_source} ${yolo_headers})
 # ----------------------------------------------------------------------------
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${Caffe_LIBRARIES})
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${OpenCV_LIBS} )
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} /usr/local/nvidia/lib64/libcudart.so.9.1)
