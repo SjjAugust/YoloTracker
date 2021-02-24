@@ -91,8 +91,7 @@ public:
         auto frame_height = static_cast<int>(cap.get(CV_CAP_PROP_FRAME_HEIGHT));
         writer.open(outFile, cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), m_fps, cv::Size(frame_width, frame_height), true);
 
-        std::map<string, int> countObjects_LefttoRight;
-        std::map<string, int> countObjects_RighttoLeft;
+
         double fontScale = CalculateRelativeSize(frame_width, frame_height);
 
         double tFrameModification = 0;
@@ -105,6 +104,9 @@ public:
         while (true) {
 
             bool success = cap.read(frame);
+            if(endFrame == 0 || endFrame > cap.get(CV_CAP_PROP_FRAME_COUNT)){
+                endFrame = cap.get(CV_CAP_PROP_FRAME_COUNT) - 1;
+            }
             if (!success) {
                 LOG(INFO) << "Process " << frameCount << " frames from " << inFile;
                 break;
@@ -237,18 +239,6 @@ public:
         csvFile << frameCount/totalRunTime << "\n";
         LOG(INFO)  << "Left to Right or Top to Bottom ";
         csvFile << "Object label" << "," << "count Left to Right" << "\n";
-        for(auto elem : countObjects_LefttoRight)
-        {
-            LOG(INFO) << elem.first << " " << elem.second << "\n";
-            csvFile << elem.first << "," << elem.second << "\n";
-        }
-        LOG(INFO)  << "Right to Left or Bottom to Top";
-        csvFile << "Object label" << "," << "count Right to Left" << "\n";
-        for(auto elem : countObjects_RighttoLeft)
-        {
-            LOG(INFO) << elem.first << " " << elem.second << "\n";
-            csvFile << elem.first << "," << elem.second << "\n";
-        }
 
         csvFile.close();
     }
