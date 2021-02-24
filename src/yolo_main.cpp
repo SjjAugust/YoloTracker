@@ -7,24 +7,24 @@
 const char* keys =
         {
                 "{help h usage ?  |                    | Print usage| }"
-                "{ @input_video   |../data/VideoD.mkv  | Input video file | }"
+                "{ @input_video   |../test/uav0000086_00000_v.avi  | Input video file | }"
                 "{ ocl opencl     |1                   | Flag to use opencl | }"
 
                 "{ sf start_frame |0                   | Frame modification parameter: Start a video from this position | }"
-                "{ ef end_frame   |100000              | Frame modification parameter: Play a video to this position (if 0 then played to the end of file) | }"
+                "{ ef end_frame   |0              | Frame modification parameter: Play a video to this position (if 0 then played to the end of file) | }"
     
                 //models
-                "{ m model        |../models/VGGNet/VOC0712/SSD_300x300/deploy.prototxt | Detection parameter: Model file | }"
-                "{ w weight       |../models/VGGNet/VOC0712/SSD_300x300/VGG_VOC0712_SSD_300x300_iter_120000.caffemodel  | Detection parameter: Weight file | }"
-                "{ lm label_map   |../models/VGGNet/VOC0712/SSD_300x300/VGG_VOC0712_SSD_300x300_iter_120000.caffemodel  | Detection parameter: Label map  file  | }"
+                "{ m model        |../models/yolov3-visdrone.prototxt | Detection parameter: Model file | }"
+                "{ w weight       |../models/yolov3-visdrone.caffemodel  | Detection parameter: Weight file | }"
+            
                 
                 //detect parameters
                 "{ th threshold   |0.7                 | Detection parameter: Confidence percentage of detected objects must exceed this value to be reported as a detected object. | }"
                 "{ dd desired_detect |1                | Detection Parameter: Flag to detect only desired objects | }"
-                "{ do desired_objects |15,2,12   | Detection Parameter: list of desired objects to detect | }"
+                "{ do desired_objects |4   | Detection Parameter: list of desired objects to detect | }"
 
                 //output parameters
-                "{ o output       |../data/D2.avi      | Writing parameter: Name of output video file | }"
+                "{ o output       |../test/out.avi      | Writing parameter: Name of output video file | }"
                 "{ save_video     |1                   | Writing parameter: Flag to enable writing to file | }"
         };
 
