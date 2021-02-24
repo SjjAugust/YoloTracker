@@ -19,7 +19,7 @@ const char* keys =
             
                 
                 //detect parameters
-                "{ th threshold   |0.7                 | Detection parameter: Confidence percentage of detected objects must exceed this value to be reported as a detected object. | }"
+                "{ th threshold   |0.3                 | Detection parameter: Confidence percentage of detected objects must exceed this value to be reported as a detected object. | }"
                 "{ dd desired_detect |1                | Detection Parameter: Flag to detect only desired objects | }"
                 "{ do desired_objects |4   | Detection Parameter: list of desired objects to detect | }"
 
