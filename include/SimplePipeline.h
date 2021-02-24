@@ -189,7 +189,7 @@ public:
                 // auto yRightTop = static_cast<int>(d[6] * frame.rows);
 
                 cv::Rect object(d[3], d[4], d[5]-d[3], d[6]-d[4]);
-                printf("rect:[%d, %d, %d, %d]\n", d[3], d[4], d[5]-d[3], d[6]-d[4]);
+                printf("rect:[%f, %f, %f, %f]\n", d[3], d[4], d[5]-d[3], d[6]-d[4]);
                 tmpRegions.push_back(CRegion(object, label, score));
             }
             tDetection += cv::getTickCount() - tStartDetection;
