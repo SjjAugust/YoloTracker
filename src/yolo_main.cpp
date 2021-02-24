@@ -7,15 +7,15 @@
 const char* keys =
         {
                 "{help h usage ?  |                    | Print usage| }"
-                "{ @input_video   |../test/uav0000086_00000_v.avi  | Input video file | }"
+                "{ @input_video   |/data/work/YoloTracker/test/uav0000086_00000_v.avi  | Input video file | }"
                 "{ ocl opencl     |1                   | Flag to use opencl | }"
 
                 "{ sf start_frame |0                   | Frame modification parameter: Start a video from this position | }"
                 "{ ef end_frame   |0              | Frame modification parameter: Play a video to this position (if 0 then played to the end of file) | }"
     
                 //models
-                "{ m model        |../models/yolov3-visdrone.prototxt | Detection parameter: Model file | }"
-                "{ w weight       |../models/yolov3-visdrone.caffemodel  | Detection parameter: Weight file | }"
+                "{ m model        |/data/work/YoloTracker/models/yolov3-visdrone.prototxt | Detection parameter: Model file | }"
+                "{ w weight       |/data/work/YoloTracker/models/yolov3-visdrone.caffemodel  | Detection parameter: Weight file | }"
             
                 
                 //detect parameters
@@ -24,7 +24,7 @@ const char* keys =
                 "{ do desired_objects |4   | Detection Parameter: list of desired objects to detect | }"
 
                 //output parameters
-                "{ o output       |../test/out.avi      | Writing parameter: Name of output video file | }"
+                "{ o output       |/data/work/YoloTracker/test/out.avi      | Writing parameter: Name of output video file | }"
                 "{ save_video     |1                   | Writing parameter: Flag to enable writing to file | }"
         };
 
