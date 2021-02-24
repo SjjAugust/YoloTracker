@@ -260,7 +260,7 @@ protected:
     )
     {
 
-        cv::rectangle(frame, track.GetLastRect(), cv::Scalar(119, 102, 39), 1, CV_AA);
+        cv::rectangle(frame, track.GetLastRect(), cv::Scalar(0, 0, 255), 1, CV_AA);
 
         if (drawTrajectory)
         {
