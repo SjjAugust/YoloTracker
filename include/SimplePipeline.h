@@ -187,7 +187,9 @@ public:
                 // auto yLeftBottom = static_cast<int>(d[4] * frame.rows);
                 // auto xRightTop = static_cast<int>(d[5] * frame.cols);
                 // auto yRightTop = static_cast<int>(d[6] * frame.rows);
+
                 cv::Rect object(d[3], d[4], d[5], d[6]);
+                printf("rect:[%d, %d, %d, %d]", d[3], d[4], d[5], d[6])
                 tmpRegions.push_back(CRegion(object, label, score));
             }
             tDetection += cv::getTickCount() - tStartDetection;
